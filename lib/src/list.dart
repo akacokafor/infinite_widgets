@@ -106,8 +106,11 @@ class _InfiniteListViewState extends State<InfiniteListView> {
   }
 
   bool _hasScroll() {
-    return _scrollController.position.maxScrollExtent != null &&
-        _scrollController.position.maxScrollExtent > 0;
+    
+    if (!_scrollController.position.hasContentDimensions) {
+      return false;
+    }
+    return _scrollController.position.maxScrollExtent > 0;
   }
 
   @override
